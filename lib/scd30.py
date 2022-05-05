@@ -1,6 +1,3 @@
-# Modified MM
-# 01/07/2020
-
 from machine import I2C
 import utime
 import time

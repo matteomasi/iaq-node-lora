@@ -1,8 +1,3 @@
-# Modified MM
-# Last revision 26/06/2020
-# Source:
-# https://pypi.org/project/sps30/
-
 import struct
 import time
 import ubinascii

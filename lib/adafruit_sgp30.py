@@ -40,9 +40,7 @@ Implementation Notes
 * MicroPython:
     https://github.com/micropython/micropython
 
-
-Modified MM. 2020
-Last revision: 03/07/2020
+Original source has been modified for this project.
 
 """
 import time
