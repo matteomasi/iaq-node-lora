@@ -41,6 +41,8 @@ Implementation Notes
     https://github.com/micropython/micropython
 
 Original source has been modified for this project.
+Changes compared to the original code are reported in the following forked version:
+https://github.com/matteomasi/micropython-sgp30
 
 """
 import time

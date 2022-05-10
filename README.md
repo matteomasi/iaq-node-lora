@@ -1,8 +1,9 @@
 # iaq-node-lora
 
-Indoor Air Quality (IAQ) node built on Pycom LoPy4 hardware.
+Indoor Air Quality (IAQ) node built on Pycom LoPy4 hardware, running [MicroPython](https://micropython.org/).
 
-The measurement node is designed to be always on. The data is sent over a self-deployed LoRa network with a hardware gateway (e.g., RAK7258 or RAK7268).  
+The node is designed to be always on. The data is sent to a gateway over the LoRaWAN network.
+The code was tested by connecting the node to a private LoRa network (self-deployed with RAK-Wireless RAK7258 and RAK7268 gateways).  
 
 ## Hardware
 
@@ -13,7 +14,7 @@ The measurement node is designed to be always on. The data is sent over a self-d
 
 ## I₂C addresses
 
-Device | Address |
+| Device | Address |
 | - | - |
 | SCD30 | 0x61 |
 | SPS30 | 0x69 |
@@ -26,9 +27,11 @@ Device | Address |
 - Edit settings in config.py.
 - Upload the project to the LoPy4 board.
 
-## LoRa payload format
+## LoRa payload format (uplink)
 
-Position | Parameter | Format | Bytes | Scale |
+The payload is sent over LoRa with the format specified below:
+
+| Position | Parameter | Format | Bytes | Scale |
 | - | - | - | - | - |
 | 1 | Temperature | int16 | 2 | 100 |
 | 2 | Humidity | int16 | 2 | 100 |
@@ -39,3 +42,13 @@ Position | Parameter | Format | Bytes | Scale |
 | 7 | PM2.5 | int16 | 2 | 10 |
 | 8 | PM4.0 | int16 | 2 | 10 |
 | 9 | PM10 | int16 | 2 | 10 |
+
+## Messages received through LoRa (downlink)
+
+The node is able to process the following incoming commands:
+
+| Index | Description | Format | Data |
+| - | - | - | - |
+| 0x11 | Reboot | | |
+| 0x12 | Set measurement interval | \<int16\> | Interval (seconds) |
+| 0x13 | Set SGP30 baselines | \<int16\>\<int16\> | eCO2, tVOC |
